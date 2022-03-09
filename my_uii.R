@@ -31,10 +31,37 @@ plot_tab <- tabPanel(
   )
 )
 
-
-
-ui <- navbarPage(
-  "Hot Dog Contests 🌭",
-  intro_tab,
-  plot_tab
+plot2_tab <- tabPanel(
+  "Plot 2",
+  sidebarLayout(
+    plot_sidebar,
+    plot_main
+  )
 )
+
+plot3_tab <- tabPanel(
+  "Plot 3",
+  sidebarLayout(
+    plot_sidebar,
+    plot_main
+  )
+)
+
+conclusion_tab <- tabPanel(
+  "Conclusion",
+  fluidPage(
+    p("This is the conclusion page.")
+  )
+)
+
+
+
+ui <- navbarPage (
+  "Final Project",
+  intro_tab,
+  plot_tab,
+  plot2_tab,
+  plot3_tab,
+  conclusion_tab
+)
+
