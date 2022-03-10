@@ -83,8 +83,17 @@ intro <- tabPanel(
   
   
   page_two <- tabPanel(
-    "Plot 2" 
-  )
+    "Plot 2",
+    sidebarLayout(
+      sidebarPanel(
+        #sliderInput(inputId = "slider_year", label = "Years Selected", value = c(2008, 2020), min = 2008, max = 2020)
+        #textInput(inputId = "username", label = "What is your name?")
+      ),
+      mainPanel(
+        h3("Deaths by Age and Race"),
+        plotlyOutput("boxplot_race")
+      )
+  ))
   
  
   page_three <- tabPanel(

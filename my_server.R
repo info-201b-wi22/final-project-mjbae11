@@ -35,32 +35,8 @@ my_server <- function(input, output) {
 
   })
   
-e <- reactive({
-  
-})
-  
-  
-f <- reactive({
-  
-  
-})
-  
 
-  # output$hotdogPlot <- renderPlotly({
-  #   # Make a scatter plot of the number of hot dogs eaten over time
-  #   # Allow the user to select the color category
-  #   my_plot <- ggplot(data = hotdog_df) +
-  #     geom_point(mapping = aes(x = year, y = num_eaten, color= get(input$user_category))) +
-  #     
-  #     labs(title = "Title", color = custom_legend_titles[[input$user_category]])
-  #   
-  #   # Make interactive plot
-  #   # Remove mode bar
-  #   my_plotly_plot <- ggplotly(my_plot) %>%
-  #     config(displayModeBar = FALSE)
-  #   
-  #   return(my_plotly_plot)
-  # })
+
   output$race_death <- renderPlotly ({
     
     race_bar_chart <- d() %>%
@@ -71,7 +47,33 @@ f <- reactive({
     config(displayModeBar = FALSE)
   return(Plot)
   })
-}
+  
+  
+  output$boxplot_race <- renderPlotly ({
+    
+    boxplot_race <- all_deaths %>%
+      ggplot(aes(x = age, y = race, fill = race)) + geom_boxplot() + labs(title = "Boxplot of Ages Based on Race")
+    
+    Plot2 <- ggplotly(boxplot_race) %>%
+      config(displayModeBar = FALSE)
+    return(Plot2)
+  })
+# 
+#   output$boxplot_race <- renderPlotly ({
+#     all_deaths %>%
+    #   ggplot(aes(x = age, y = race, fill = race)) + geom_boxplot() + labs(title = "Boxplot of Ages Based on Race")
+    # 
+    # Plot2 <- ggplotly(boxplot_race) %>%
+    #   config(displayModeBar = FALSE)
+    # return(Plot2)
+#     
+#   })      # |    plotOutput(outputId = "boxplot_race")
+ }
+
+
+
+
+
 
 
 
