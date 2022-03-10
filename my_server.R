@@ -26,18 +26,26 @@ all_deaths <- all_deaths %>%
 
 
 my_server <- function(input, output) {
-  # Assign a value to the `message` key in the `output` list using
-  # the renderText() method, creating a value the UI can display
-  output$message <- renderText({
-    # This block is like a function that will automatically rerun
-    # when a referenced `input` value changes
-    
-    # Use the `username` key from `input` to create a value
-    message_str <- paste0("Hello ", input$username, "!")
-    
-    # Return the value to be rendered by the UI
-    message_str
+  
+  
+  d <- reactive({
+    data <- all_deaths %>%
+      filter(year > min(input$slider_year)) %>%
+      filter(year < max(input$slider_year))
+
   })
+  
+e <- reactive({
+  
+})
+  
+  
+f <- reactive({
+  
+  
+})
+  
+
   # output$hotdogPlot <- renderPlotly({
   #   # Make a scatter plot of the number of hot dogs eaten over time
   #   # Allow the user to select the color category
@@ -55,7 +63,7 @@ my_server <- function(input, output) {
   # })
   output$race_death <- renderPlotly ({
     
-    race_bar_chart <- all_deaths %>%
+    race_bar_chart <- d() %>%
     ggplot(mapping = aes(x = race, fill = race)) +
     labs(title = "Breakdown of Incarcerated Races", subtitle = "Who Have Died in Prison") +
     geom_bar()
@@ -64,8 +72,6 @@ my_server <- function(input, output) {
   return(Plot)
   })
 }
-
-
 
 
 

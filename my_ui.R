@@ -71,12 +71,11 @@ intro <- tabPanel(
   
     sidebarLayout(
       sidebarPanel(
-        textInput(inputId = "username", label = "What is your name?")
+        sliderInput(inputId = "slider_year", label = "Years Selected", value = c(2008, 2020), min = 2008, max = 2020)
+        #textInput(inputId = "username", label = "What is your name?")
       ),
       mainPanel(
-        h3("Primary Content"),
-        p("Plots, data tables, etc. would go here"),
-       # plotOutput("hotdogPlot"),
+        h3("Deaths by Race"),
         plotlyOutput("race_death")
       )
     )
