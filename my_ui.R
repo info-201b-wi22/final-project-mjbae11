@@ -48,7 +48,7 @@ plot2_tab <- tabPanel(
     plot_main,
     (radioButtons(inputId = "unconvicted/convicted_button",
                   label = "Conviction Status", 
-                  choices = c(custody_status$C = "Convicted", custody_status$U = "Unconvicted")
+                  choices = list(custody_status$C = "Convicted", custody_status$U = "Unconvicted")
                   ))
     
   ))
@@ -60,9 +60,9 @@ plot3_tab <- tabPanel(
     plot_sidebar,
     plot_main,
     (checkboxGroupInput(inputId = "causes_of_death",
-                       label = "Cause of Death", choices = list(Medical = "Medical", Suicide = "Suicide", Drug_Abuse = "Drug Abuse", Homicide = "Homicide", Other = "Other", Accident = "Accident",
-                       Undetermined = "Undetermined"), selected, inline, width,
-                       choiceNames, choiceValues)
+                       label = "Cause of Death", 
+                       choices = list(Medical = "Medical", Suicide = "Suicide", Drug_Abuse = "Drug Abuse", Homicide = "Homicide", Other = "Other", Accident = "Accident",
+                       Undetermined = "Undetermined"), selected, inline, width)
   )))
 
 
