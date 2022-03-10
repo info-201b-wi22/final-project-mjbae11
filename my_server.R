@@ -1,6 +1,7 @@
 library(ggplot2)
 library(plotly)
 library(shiny)
+library(bslib)
 
 # Data source: https://apreshill.github.io/data-vis-labs-2018/01-eda_hot_dogs.html
 

@@ -1,11 +1,12 @@
 library(ggplot2)
 library(plotly)
 library(shiny)
+library(bslib)
 
 
 intro_tab <- tabPanel(
   "Introduction",
-  fluidPage(
+  fluidPage(theme = bs_theme(bootswatch = "darkly", primary = "#35512A"),
     h1("Questions We Are Seeking To Answer", align = "center"), 
     p("How many people who have died while being incarcerated who were not convicted?"), 
     p("What correlations are there between cause of death and race, if any?"), 
