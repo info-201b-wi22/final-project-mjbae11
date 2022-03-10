@@ -66,13 +66,12 @@ intro <- tabPanel(
 
   page_one <- tabPanel(
     "Plot 1", 
-    titlePanel("Page 1"), 
+    titlePanel("Plot 1"), 
     
   
     sidebarLayout(
       sidebarPanel(
         sliderInput(inputId = "slider_year", label = "Years Selected", value = c(2008, 2020), min = 2008, max = 2020)
-        #textInput(inputId = "username", label = "What is your name?")
       ),
       mainPanel(
         h3("Deaths by Race"),
@@ -84,21 +83,40 @@ intro <- tabPanel(
   
   page_two <- tabPanel(
     "Plot 2",
+    titlePanel("Plot 2"),
+    
     sidebarLayout(
       sidebarPanel(
-        #sliderInput(inputId = "slider_year", label = "Years Selected", value = c(2008, 2020), min = 2008, max = 2020)
-        #textInput(inputId = "username", label = "What is your name?")
-      ),
-      mainPanel(
-        h3("Deaths by Age and Race"),
-        plotlyOutput("boxplot_race")
+        (radioButtons(inputId = "unconvicted/convicted_button",
+                      label = "Conviction Status",
+                      choices = list("Convicted" = "C", "Unconvicted" = "U"))
+        )),
+    
+        mainPanel(
+          h3("Boxplot of Ages by Race"),
+          plotlyOutput("boxplot_race")
+        )
       )
-  ))
+  )
+    
+
   
  
   page_three <- tabPanel(
-    "Plot 3" 
+    "Plot 3",
+    titlePanel("Plot 3"),
+    
+     sidebarLayout(
+       sidebarPanel(
+       (sliderInput(inputId = "slider_age", label = "Age", value = c(15, 93), min = 15, max = 93)
+         )),
+    mainPanel(
+      h3("Cause of Death Based on Race"),
+      plotlyOutput("cause_of_death")
   )
+  )
+  )
+    
   
   conclusion <- tabPanel(
     "Conclusion",
@@ -108,7 +126,7 @@ p("We can see how significantly higher unconvicted prisoners die compared to con
 
 p("Additionally, when looking at the boxplot for ages and race, we can see that the youngest person who was convicted was Black and died at the age of fifteen, and there is no data available for the date of incarceration. Black youth incarceration is significantly higher than white youth incarceration. Black youth are five times more likely to be incarcerated compared to their white counterparts. Even though it’s just one data point in the boxplot, it is reflective of the real world and how Black children are treated as adults and punished and incarcerated at higher rates than white children."),
 
-p("Observing the cause of death with another interactive plot, we can see that a little over 25% of people commit suicide in prison. That is about one in four people, and says a lot about the conditions incarcerated people have to endure for them to commit suicide. Incarcerated people are placed in vulnerable positions where people in power in prisons can be abusive and violent towards them with little fear of repercussions, have virtually no access to mental health resources, and are put in overcrowded and insufficiently resourced facilities."),
+p("Observing the cause of death with another interactive plot, we can see that a little over 25% of people commit suicide in prison. That is about one in four people, and says a lot about the conditions incarcerated people have to endure for them to commit suicide. Incarcerated people are placed in vulnerable positions where people in power in prisons can be abusive and violent towards them with little fear of repercussions, have virtually no access to mental health resources, and are put in overcrowded and insufficiently resourced facilities. Moreover, there is a higher proportion of Black incarcerated deaths to white incarcerated deaths when the cause of death is medical. This is reflective of the already present lack of medical attention given to incarcerated people, but specific to Black people and the additional medical neglect they are victim to"),
 
 p("Looking at our findings collectively and individually, it is clear that the prison system needs to be changed, and is reflective of so many different systems of oppression at hand and complexes. The prison system shows symptoms of a racist and capitalist society and the workings of the prison industrial complex. Those are not the only systems of oppression that are present in prison, but the ones we can observe based on this dataset. The United States has had issues with mass incarceration for decades with it only getting worse as time goes on that the public must be educated on and made aware of, and demand change for.")
     
@@ -118,7 +136,7 @@ p("Looking at our findings collectively and individually, it is clear that the p
 
   
   
-  ui <- navbarPage(
+  ui <- navbarPage(theme = bs_theme(bootswatch = "darkly", primary = "#35512A", base_font = font_google("Roboto")),
     "Deaths of Incarcerated People", 
     intro,
     page_one,         
@@ -143,16 +161,26 @@ p("Looking at our findings collectively and individually, it is clear that the p
 # plot2_tab <- tabPanel(
 #   plotlyOutput(outputId = "plot2")
 # ),
-#   sidebarLayout(
-#     plot_sidebar,
-#     plot_main,
-#     (radioButtons(inputId = "unconvicted/convicted_button",
-#                   label = "Conviction Status", 
-#                   choices = list("Convicted" = "C", "Unconvicted" = "U")
-#                   ))
+  # sidebarLayout(
+  #   plot_sidebar,
+  #   plot_main,
+  #   (radioButtons(inputId = "unconvicted/convicted_button",
+  #                 label = "Conviction Status",
+  #                 choices = list("Convicted" = "C", "Unconvicted" = "U")
+  #                 ))
 #     
 #   ),
 # 
+  
+  
+  
+  # sidebarLayout(
+  #   sidebarPanel(
+  #     checkboxGroupInput(inputId = "causes_of_death",
+  #                         label = "Cause of Death",
+  #                         choices = list("Medical" = "Medical", "Suicide" = "Suicide", "Drug_Abuse" = "Drug Abuse", "Homicide" = "Homicide", "Other" = "Other", "Accident" = "Accident",
+  #                                        "Undetermined" = "Undetermined"))),
+  
 # 
 # 
 # 
@@ -161,11 +189,11 @@ p("Looking at our findings collectively and individually, it is clear that the p
 #   sidebarLayout(
 #     plot_sidebar,
 #     plot_main,
-#     (checkboxGroupInput(inputId = "causes_of_death",
-#                         label = "Cause of Death", 
-#                         choices = list("Medical" = "Medical", "Suicide" = "Suicide", "Drug_Abuse" = "Drug Abuse", "Homicide" = "Homicide", "Other" = "Other", "Accident" = "Accident",
-#                                        "Undetermined" = "Undetermined"))
-#     ))),
+    # (checkboxGroupInput(inputId = "causes_of_death",
+    #                     label = "Cause of Death",
+    #                     choices = list("Medical" = "Medical", "Suicide" = "Suicide", "Drug_Abuse" = "Drug Abuse", "Homicide" = "Homicide", "Other" = "Other", "Accident" = "Accident",
+    #                                    "Undetermined" = "Undetermined"))
+    # ))),
 # 
 # 
 # 

@@ -3,6 +3,7 @@ library(plotly)
 library(shiny)
 library(bslib)
 library(dplyr)
+library(ggrepel)
 
 all_deaths <- read.csv('all_deaths.csv')
 
@@ -40,9 +41,9 @@ my_server <- function(input, output) {
   output$race_death <- renderPlotly ({
     
     race_bar_chart <- d() %>%
-    ggplot(mapping = aes(x = race, fill = race)) +
+    ggplot(mapping = aes(x = race_full, fill = race)) +
     labs(title = "Breakdown of Incarcerated Races", subtitle = "Who Have Died in Prison") +
-    geom_bar()
+    geom_bar() + coord_flip()
   Plot <- ggplotly(race_bar_chart) %>%
     config(displayModeBar = FALSE)
   return(Plot)
@@ -52,12 +53,32 @@ my_server <- function(input, output) {
   output$boxplot_race <- renderPlotly ({
     
     boxplot_race <- all_deaths %>%
-      ggplot(aes(x = age, y = race, fill = race)) + geom_boxplot() + labs(title = "Boxplot of Ages Based on Race")
+      ggplot(aes(x = age, y = race_full, fill = race)) + geom_boxplot() + labs(title = "Boxplot of Ages Based on Race")
     
     Plot2 <- ggplotly(boxplot_race) %>%
       config(displayModeBar = FALSE)
     return(Plot2)
   })
+  
+  
+  
+  output$cause_of_death <- renderPlotly ({
+    
+    cause_of_death <- all_deaths %>%
+      ggplot(mapping = aes(x = cause_death_full, fill = race_full)) +
+      labs(x = "Cause of Death", title = "Cause of Death", subtitle = "Filtered by Race") +
+      geom_bar() + coord_flip()
+    
+    Plot3 <- ggplotly(cause_of_death) %>%
+      config(displayModeBar = FALSE)
+    return(Plot3)
+  })
+  
+  
+  
+  
+  
+  
 # 
 #   output$boxplot_race <- renderPlotly ({
 #     all_deaths %>%
