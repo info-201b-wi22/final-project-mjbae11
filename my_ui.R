@@ -1,5 +1,7 @@
 library(ggplot2)
 library(plotly)
+library(shiny)
+
 
 intro_tab <- tabPanel(
   "Introduction",
@@ -11,10 +13,11 @@ intro_tab <- tabPanel(
     h1("Data We Are Using To Answer Our Questions"), 
     p("We are using the dataset from Reuters Investigates. Reuters has filed over 1,500 public record requests to get data related to people dying while being incarcerated from 2008 to 2020. As Reuter notes, the U.S. Justice Department does not have this information publicly available, which necessitated Reuter finding the data on their own accord and having it available for public use"),
     img(src='jail_cell.png', align = "center"),
-    theme = bs_theme(
-                  bootswatch = "darkly"),
+    #theme = bs_theme(
+                  #bootswatch = "darkly"),
     h1("Issues That May Occur With The Data"),
-    p(""))
+    p("Some issues with the dataset is that it has limited data points as not only a few public record requests were fulfilled and the data is not representative of all deaths that have occurred in prison, just the data that could be accessed and made public. Furthermore, there are a lot of NA values, as a result, leaves a few holes in the data and issues with how to get around it when we analyze the data and questions whether or not to include the NA values. We chose to keep the NA values when we could because the NA values show how inaccessible some parts and details of the topic are, and excluding those values can skew the data.
+"))
     )
 plot_sidebar <- sidebarPanel(
   selectInput(
@@ -35,7 +38,7 @@ plot_tab <- tabPanel(
   "Plot",
   sidebarLayout(
     plot_sidebar,
-    plot_main, sliderInput(inputId = "slider_year", label = "Years Selected", min = "2008", max = "2020")
+    plot_main, sliderInput(inputId = "slider_year", label = "Years Selected", value = c(2008, 2020), min = 2008, max = 2020)
 
     
   ))
@@ -54,16 +57,18 @@ plot2_tab <- tabPanel(
   ))
 
 
+
+
 plot3_tab <- tabPanel(
   "Plot 3",
   sidebarLayout(
     plot_sidebar,
     plot_main,
     (checkboxGroupInput(inputId = "causes_of_death",
-                       label = "Cause of Death", 
-                       choices = list(Medical = "Medical", Suicide = "Suicide", Drug_Abuse = "Drug Abuse", Homicide = "Homicide", Other = "Other", Accident = "Accident",
-                       Undetermined = "Undetermined"), selected, inline, width)
-  )))
+                        label = "Cause of Death", 
+                        choices = list("Medical" = Medical, "Suicide" = Suicide, "Drug_Abuse" = DrugAbuse, "Homicide" = Homicide, "Other" = Other, "Accident" = Accident,
+                                       "Undetermined" = Undetermined))
+    )))
 
 
 
@@ -77,7 +82,6 @@ conclusion_tab <- tabPanel(
 
 
 
-
 ui <- navbarPage (
   "Final Project",
   intro_tab,
@@ -86,4 +90,5 @@ ui <- navbarPage (
   plot3_tab,
   conclusion_tab
 )
+
 
