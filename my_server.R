@@ -3,7 +3,7 @@ library(plotly)
 
 # Data source: https://apreshill.github.io/data-vis-labs-2018/01-eda_hot_dogs.html
 
-death_data <- read.csv("all_deaths.csv")
+death_data <- read.csv("https://github.com/info-201b-wi22/final-project-mjbae11/blob/main/all_deaths.csv")
 
 custom_legend_titles <- reactiveValues("year" = "Year of Contest", "gender" = "Gender of Athlete", "name" = "Name of Athlete")
 

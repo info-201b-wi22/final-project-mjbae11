@@ -1,8 +1,8 @@
 library(shiny)
 install.packages("rsconnect")
 library(rsconnect)
-source("my_uii.R")
-source("my_serverr.R")
+source("my_ui.R")
+source("my_server.R")
 
 # Add a dynamic title to the hot dog plot
 # Publish your Shiny App to the web

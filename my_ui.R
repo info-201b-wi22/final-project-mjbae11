@@ -15,9 +15,7 @@ intro_tab <- tabPanel(
                   bootswatch = "darkly"),
     h1("Issues That May Occur With The Data"),
     p(""))
-    
-
-
+    )
 plot_sidebar <- sidebarPanel(
   selectInput(
     inputId = "user_category",
@@ -48,10 +46,12 @@ plot2_tab <- tabPanel(
   sidebarLayout(
     plot_sidebar,
     plot_main,
-    (radioButtons(inputId = "unconvicted/convicted_button", label = "Conviction Status", choices = custody_status$C = "Convicted",
-                  custody_status$U = "Unconvicted"))
+    (radioButtons(inputId = "unconvicted/convicted_button",
+                  label = "Conviction Status", 
+                  choices = c(custody_status$C = "Convicted", custody_status$U = "Unconvicted")
+                  ))
     
-  )
+  ))
 
 
 plot3_tab <- tabPanel(
@@ -63,7 +63,7 @@ plot3_tab <- tabPanel(
                        label = "Cause of Death", choices = list(Medical = "Medical", Suicide = "Suicide", Drug_Abuse = "Drug Abuse", Homicide = "Homicide", Other = "Other", Accident = "Accident",
                        Undetermined = "Undetermined"), selected, inline, width,
                        choiceNames, choiceValues)
-  ))
+  )))
 
 
 
