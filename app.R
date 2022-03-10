@@ -1,13 +1,9 @@
-library(shiny)
-install.packages("rsconnect")
-library(rsconnect)
-library(bslib)
-source("my_ui.R")
-source("my_server.R")
+library("shiny")
+library("rsconnect")
+library("bslib")
+ui <- source("my_ui.R")
+server <- source("my_server.R")
 
 
-# Add a dynamic title to the hot dog plot
-# Publish your Shiny App to the web
 
-
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui$value, server = server$value)
